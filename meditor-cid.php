@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Alumni Business Network Sweets
+Plugin Name: Scriblio Community Information Database
 Plugin URI: 
-Description: Adds functions for Alumni Business Network site, requires Scriblio and bSuite.
+Description: Enables the entry, searching, and display of "community information database" records; requires Scriblio and bSuite.
 Author: Casey Bisson
 Version: 0.0.1
 */
