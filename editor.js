@@ -1,4 +1,4 @@
-function abn_meditor() {
+function cid_meditor() {
 	jQuery("#screen-meta").hide();
 	jQuery("#screen-options-link-wrap").hide();
 

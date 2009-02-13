@@ -2,80 +2,80 @@
 	width: 710px;
 }
 
-#scrib_meditor-abn-alum .name input {
+#scrib_meditor-cid-alum .name input {
 	width: 250px;
 }
 
-#scrib_meditor-abn-alum .year input {
+#scrib_meditor-cid-alum .year input {
 	width: 100px;
 }
 
 
-#scrib_meditor-abn-contact input {
+#scrib_meditor-cid-contact input {
 	width: 350px;
 }
 
-#scrib_meditor-abn-contact li.field {
+#scrib_meditor-cid-contact li.field {
 	clear: left;
 	margin-left: 35px;
 }
 
-#scrib_meditor-abn-contact li.weburl {
+#scrib_meditor-cid-contact li.weburl {
 	clear: none;
 }
 
-#scrib_meditor-abn-location li.field {
+#scrib_meditor-cid-location li.field {
 	clear: left;
 	margin-left: 35px;
 }
 
-#scrib_meditor-abn-location li.street_a {
+#scrib_meditor-cid-location li.street_a {
 	clear: none;
 	margin-left: 0;
 }
 
-#scrib_meditor-abn-location input {
+#scrib_meditor-cid-location input {
 	width: 350px;
 }
 
-#scrib_meditor-abn-location li.state, #scrib_meditor-abn-location li.zip {
+#scrib_meditor-cid-location li.state, #scrib_meditor-cid-location li.zip {
 	clear: none;
 	margin-left: 0;
 }
 
-#scrib_meditor-abn-location .city input {
+#scrib_meditor-cid-location .city input {
 	width: 198px;
 }
-#scrib_meditor-abn-location .state input {
+#scrib_meditor-cid-location .state input {
 	width: 48px;
 }
-#scrib_meditor-abn-location .zip input {
+#scrib_meditor-cid-location .zip input {
 	width: 98px;
 }
 
-#scrib_meditor-abn-location li.weburl, #scrib_meditor-abn-location li.email, #scrib_meditor-abn-location li.phone, #scrib_meditor-abn-location li.fax {
+#scrib_meditor-cid-location li.weburl, #scrib_meditor-cid-location li.email, #scrib_meditor-cid-location li.phone, #scrib_meditor-cid-location li.fax {
 	display: none;
 }
 
-#scrib_meditor-abn-specials input {
+#scrib_meditor-cid-specials input {
 	width: 350px;
 }
 
-#scrib_meditor-abn-specials textarea {
+#scrib_meditor-cid-specials textarea {
 	width: 350px;
 	height: 125px;
 }
 
-#scrib_meditor-abn-specials .desc {
+#scrib_meditor-cid-specials .desc {
 	clear: left;
 	margin-left: 35px;
 }
 
-#scrib_meditor-abn-specials .targets input {
+#scrib_meditor-cid-specials .targets input {
 	width: 550px;
 }
 
 
-#scrib_meditor-abn-geog input, #scrib_meditor-abn-keywords input {
+#scrib_meditor-cid-geog input, #scrib_meditor-cid-keywords input {
 	width: 350px;
 }
