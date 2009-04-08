@@ -19,9 +19,9 @@ function cid_init(){
         array(
             '_title' => 'Community Information Database Record',
             '_elements' => array(
-                
-            	//For alumi network
-            	/*'alum' => array(
+               
+                //For alumi network
+                /*'alum' => array(
                     '_title' => 'Alumnae/us',
                     '_repeatable' => TRUE,
                     '_elements' => array(
@@ -41,13 +41,13 @@ function cid_init(){
                         ),
                     ),
                 ),*/
-   
-                
+  
+               
                 'location' => array(
                     '_title' => 'Location',
                     '_repeatable' => TRUE,
                     '_elements' => array(
-                    	'weburl' => array(
+                        'weburl' => array(
                             '_title' => 'Web',
                             '_input' => array(
                                 '_type' => 'text',
@@ -112,12 +112,12 @@ function cid_init(){
                         ),
                     ),
                 ),
-   
+  
                 'contact' => array(
                     '_title' => 'Contact',
                     '_repeatable' => TRUE,
                     '_elements' => array(
-                    	'contact_name' => array(
+                        'contact_name' => array(
                             '_title' => 'Name',
                             '_input' => array(
                                 '_type' => 'text',
@@ -131,7 +131,7 @@ function cid_init(){
                             ),
                             '_sanitize' => 'wp_filter_nohtml_kses',
                         ),
-                        
+                       
                         'email' => array(
                             '_title' => 'Email',
                             '_input' => array(
@@ -155,7 +155,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-                
+               
                 'geog' => array(
                     '_title' => 'Areas Served',
                     '_repeatable' => TRUE,
@@ -169,7 +169,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
                 'lang' => array(
                     '_title' => 'Languages',
                     '_repeatable' => TRUE,
@@ -183,7 +183,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
                 //customizable subject headings
                 'category' => array(
                     '_title' => 'Categories',
@@ -215,7 +215,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-                
+               
                 'keywords' => array(
                     '_title' => 'Keywords',
                     '_description' => 'Use the terms your customers would to describe your field or category of business. Enter one key phrase per box.',
@@ -230,7 +230,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
                 'services' => array(
                     '_title' => 'Services',
                     '_description' => 'Create one entry per service. Services might be a hotline, meetings, a publication, or anything else you offer.',
@@ -287,7 +287,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
                 'opportunities' => array(
                     '_title' => 'Opportunities',
                     '_description' => 'Do you offer volunteer or internship opportunities?',
@@ -298,9 +298,9 @@ function cid_init(){
 //TODO: Handle checkbox
                             '_input' => array(
                                 '_type' => 'checkbox',
-                             
+                            
                             ),
-                           
+                          
                         ),
                         'intern' => array(
                             '_title' => 'Internship Information',
@@ -311,7 +311,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
                 'facilities' => array(
                     '_title' => 'Facilities',
                     '_desription' => 'Describe your facilities and indicate any special features. Leave fields blank that do not apply.',
@@ -351,7 +351,7 @@ function cid_init(){
                                 '_type' => 'text',
                             ),
                             '_sanitize' => 'wp_filter_nohtml_kses',
-                               
+                              
                         ),
                         'equip' => array(
                             '_title' => 'Available Equipment',
@@ -376,7 +376,7 @@ function cid_init(){
                         ),
                     ),
                 ),
-               
+              
             ),
         )
     );
@@ -455,7 +455,7 @@ $stuff = array(
         foreach( $r['cid']['geog'] as $temp )
             if( !empty( $temp['a'] ))
                 $facets['cid_geog'][] = $temp['a'];
-               
+              
         foreach( $r['cid']['lang'] as $temp )
             if( !empty( $temp['a'] ))
                 $facets['cid_lang'][] = $temp['a'];
@@ -518,4 +518,27 @@ function cid_sidebar() {
 
     return( $content );
 }
+
+//display the record
+
+add_filter( 'the_content', 'cid_the_content');
+
+function cid_the_content( $content ) {
+    global $id;
+   
+    if ( $id && ( $r = get_post_meta( $id, 'scrib_meditor_content', true )) && is_array( $r[$cid] )){
+   
+        $content = '<ul class="fullrecord">';
+       
+        $content .= '<li>' . $temp['city'] . '</li>';
+       
+        $content .= '</ul>';
+    }
+   
+    return( $content );
+   
+}
+
+
+
 ?>
