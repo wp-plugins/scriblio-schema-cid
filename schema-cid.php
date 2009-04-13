@@ -2,8 +2,7 @@
 /*
 Plugin Name: Scriblio Community Information Database
 Plugin URI: http://about.scriblio.net/
-Description: Enables the entry, searching, and display of "community information database" records; requires Scriblio and bSuite.
-Author: Casey Bisson
+Description: Enables the entry, searching, and display of "community information database" records; requires Scriblio and bSuite. By Casey Bisson with significant contributions by Shannon Astolfi.
 Version: 0.0.1
 */
 
@@ -11,38 +10,11 @@ Version: 0.0.1
 function cid_init(){
 	global $scrib;
 
-
-// this was meant to unregister the regular Scriblio meditor forms
-//	  $scrib->meditor_unregister_defaults();
-
 	$scrib->meditor_register( 'cid',
 		array(
 			'_title' => 'Community Information Database Record',
 			'_elements' => array(
-			   
-				//For alumi network
-				/*'alum' => array(
-					'_title' => 'Alumnae/us',
-					'_repeatable' => TRUE,
-					'_elements' => array(
-						'name' => array(
-							'_title' => 'Name',
-							'_input' => array(
-								'_type' => 'text',
-							),
-							'_sanitize' => 'wp_filter_nohtml_kses',
-						),
-						'year' => array(
-							'_title' => 'Class Year',
-							'_input' => array(
-								'_type' => 'text',
-							),
-							'_sanitize' => 'wp_filter_nohtml_kses',
-						),
-					),
-				),*/
-  
-			   
+
 				'location' => array(
 					'_title' => 'Location',
 					'_repeatable' => TRUE,
@@ -311,7 +283,7 @@ function cid_init(){
 						),
 					),
 				),
-			  
+
 				'facilities' => array(
 					'_title' => 'Facilities',
 					'_desription' => 'Describe your facilities and indicate any special features. Leave fields blank that do not apply.',
@@ -477,64 +449,88 @@ $stuff = array(
 		foreach( $facets as $taxonomy => $tags ){
 
 			if( 'post_tag' == $taxonomy ){
-				wp_set_post_tags($post_id, $tags, TRUE);
+				wp_set_post_tags( $post_id, $tags, TRUE );
 				continue;
 			}
 
 			if(!is_taxonomy( $taxonomy ))
-				register_taxonomy($taxonomy, 'post');
-			wp_set_object_terms($post_id, $tags, $taxonomy);
+				register_taxonomy( $taxonomy, 'post' );
+			wp_set_object_terms( $post_id, $tags, $taxonomy );
 		}
 	}
 }
 
-function cid_sidebar() {
-	global $id, $post, $bsuite;
-
-	$id = $post->ID;
-
-	if( ( $r = get_post_meta( $id, 'scrib_meditor_content', true )) && ( is_array( $r['cid'] )) ){
-		$cid_div = '<li class="widget widget_scrib_facets">';
-
-		$cid_div .= $bsuite->icon_get_h( $id, 's' );
-
-		$cid_div .= '<h3 class="widgettitle">Alum</h3><ul>';
-		foreach( $r['cid']['alum'] as $temp )
-			$cid_div .= '<li>'. $temp['name'] . ( $temp['year'] ? '<br /><small>'. $temp['year'] .'</small>' : '' ) .'</li>';
-		$cid_div .= '</ul>';
-
-		$cid_div .= '<h3 class="widgettitle">Contact</h3><ul>';
-		$cid_div .= ( $r['cid']['contact'][0]['phone'] ? '<li>'. $r['cid']['contact'][0]['phone'] .'</li>' : '' );
-		$cid_div .= ( $r['cid']['contact'][0]['weburl'] ? '<li><a href="'. $r['cid']['contact'][0]['weburl'] .'">'. $r['cid']['contact'][0]['weburl'] .'</a></li>' : '' );
-		$cid_div .= ( $r['cid']['contact'][0]['email'] ? '<li><a href="mailto:'. $r['cid']['contact'][0]['email'] .'">'. $r['cid']['contact'][0]['email'] .'</a></li>' : '' );
-		$cid_div .= '</ul>';
-
-		$cid_div .= '</li>';
-
-//		  print_r( $r );
-
-		echo( $cid_div );
-	}
-
-	return( $content );
-}
-
-//display the record
-
-add_filter( 'the_content', 'cid_the_content');
-
 function cid_the_content( $content ) {
-	global $id;
-   
-	if ( $id && ( $r = get_post_meta( $id, 'scrib_meditor_content', true )) && is_array( $r[$cid] )){
-   
-		$content = '<ul class="fullrecord">';
+	global $id, $bsuite;
+
+	if ( $id && ( $r = get_post_meta( $id, 'scrib_meditor_content', true )) && is_array( $r['cid'] )){
+		$r = $r['cid'];
+
+		$record = '<ul class="cid-fullrecord">';
+		$record .= $bsuite->icon_get_h( $id, 's' );
+
+		// go through each of the locations and build an html list for each 
+		foreach( $r['location'] as $temp ){
+			$location = '';
+			if( !empty( $temp['street_a'] ))
+				$location .= '<li class="street_a">' . $temp['street_a'] . '</li>';
+
+			if( !empty( $temp['street_b'] ))
+				$location .= '<li class="street_b">' . $temp['street_b'] . '</li>';
+
+			if( !empty( $temp['street_c'] ))
+				$location .= '<li class="street_c">' . $temp['street_c'] . '</li>';
+
+			if( !empty( $temp['city'] ))
+				$location .= '<li class="city">' . $temp['city'] . '</li>';
+
+			if( !empty( $temp['state'] ))
+				$location .= '<li class="state">' . $temp['state'] . '</li>';
+
+			if( !empty( $temp['zip'] ))
+				$location .= '<li class="zip">' . $temp['zip'] . '</li>';
+
+			if( !empty( $temp['directions'] ))
+				$location .= '<li class="directions">' . $temp['directions'] . '</li>';
+
+			// if $location is not empty, then add it to the record
+			if( !empty( $location ))
+				$record .= '<li class="location"><ul>' . $location . '</ul></li>';
+		}
+
+		// go through each of the facilities and build an html list for each 
+		foreach( $r['facilities'] as $temp ){
+			$facility = '';
+			if( !empty( $temp['room_cap'] ))
+				$facility .= '<li class="room_cap">' . $temp['room_cap'] . '</li>';
+
+			if( !empty( $temp['room_fee'] ))
+				$facility .= '<li class="room_fee">' . $temp['room_fee'] . '</li>';
+
+			if( !empty( $temp['room_restrict'] ))
+				$facility .= '<li class="room_restrict">' . $temp['room_restrict'] . '</li>';
+
+			if( !empty( $temp['kitchen'] ))
+				$facility .= '<li class="kitchen">' . $temp['kitchen'] . '</li>';
+
+			if( !empty( $temp['equip'] ))
+				$facility .= '<li class="equip">' . $temp['equip'] . '</li>';
+
+			if( !empty( $temp['equip_restrict'] ))
+				$facility .= '<li class="equip_restrict">' . $temp['equip_restrict'] . '</li>';
+
+			if( !empty( $temp['disabled'] ))
+				$facility .= '<li class="disabled">' . $temp['disabled'] . '</li>';
+
+			// if $facility is not empty, then add it to the record
+			if( !empty( $facility ))
+				$record .= '<li class="desc">'. ( isset( $temp['desc'] ) ? $temp['desc'] : '' ) .'<ul>' . $facility . '</ul></li>';
+		}
 	   
-		$content .= '<li>' . $temp['city'] . '</li>';
-	   
-		$content .= '</ul>';
+		$record .= '</ul>';
 	}
    
-	return( $content );
+	return( $record . $content );
    
 }
+add_filter( 'the_content', 'cid_the_content');
