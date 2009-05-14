@@ -463,8 +463,18 @@ $stuff = array(
 function cid_the_content( $content ) {
 	global $id, $bsuite;
 
+/* debugging */
+echo "<h2>Do we have a post ID? ID: $id</h2>";
+print_r( get_post_meta( $id, 'scrib_meditor_content', true ));
+/* end debugging */
+
 	if ( $id && ( $r = get_post_meta( $id, 'scrib_meditor_content', true )) && is_array( $r['cid'] )){
 		$r = $r['cid'];
+
+/* debugging */
+echo "<h2>We have a CID record! ID: $id</h2>";
+print_r( $r );
+/* end debugging */
 
 		$record = '<ul class="cid-fullrecord">';
 		$record .= $bsuite->icon_get_h( $id, 's' );
