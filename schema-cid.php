@@ -394,6 +394,7 @@ function cid_admin_footer_hook() {
 
 
 function cid_save_record( $post_id , $r ) {
+	global $scrib;
 //die( print_r( $r ));
 
 $stuff = array(
@@ -442,6 +443,8 @@ $stuff = array(
             if( !empty( $temp['a'] ))
                 $facets['cid_tags'][] = $temp['a'];
     }
+
+	wp_set_object_terms( $post_id, (int) $scrib->options['catalog_category_id'], 'category', FALSE );
 
     if ( count( $facets )){
         foreach( $facets as $taxonomy => $tags ){
