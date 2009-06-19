@@ -510,8 +510,8 @@ print_r( $r );
         }
        
         // go through each of the contacts and build an html list for each
+		$contact = '';
         foreach( $r['contact'] as $temp ){
-            $contact = '';
             if( !empty( $temp['name'] ))
                 $contact .= '<li class="name">' . $temp['name'] . '</li>';
 
@@ -526,33 +526,30 @@ print_r( $r );
 
             if( !empty( $temp['fax'] ))
                 $contact .= '<li class="fax">' . $temp['fax'] . '</li>';
-
-            // if $contact is not empty, then add it to the record
-            if( !empty( $contact ))
-                $record .= '<li class="contact"><h3>Contacts</h3><ul>' . $contact . '</ul></li>';
         }
+		// if $contact is not empty, then add it to the record
+		if( !empty( $contact ))
+			$record .= '<li class="contact"><h3>Contacts</h3><ul>' . $contact . '</ul></li>';
        
         // go through each of the geographic areas and build an html list for each
+		$geog = '';
         foreach( $r['geog'] as $temp ){
-            $geog = '';
             if( !empty( $temp['a'] ))
                 $geog .= '<li class="geog_a">' . $temp['a'] . '</li>';
-
-            // if $geog is not empty, then add it to the record
-            if( !empty( $geog ))
-                $record .= '<li class="geog"><h3>Areas Served</h3><ul>' . $geog . '</ul></li>';
         }
+		// if $geog is not empty, then add it to the record
+		if( !empty( $geog ))
+			$record .= '<li class="geog"><h3>Areas Served</h3><ul>' . $geog . '</ul></li>';
        
         // go through each of the languages and build an html list for each
+		$lang = '';
         foreach( $r['lang'] as $temp ){
-            $lang = '';
             if( !empty( $temp['a'] ))
                 $lang .= '<li class="lang_a">' . $temp['a'] . '</li>';
-
-            // if $lang is not empty, then add it to the record
-            if( !empty( $lang ))
-                $record .= '<li class="lang"><h3>Languages Spoken</h3><ul>' . $lang . '</ul></li>';
         }
+		// if $lang is not empty, then add it to the record
+		if( !empty( $lang ))
+			$record .= '<li class="lang"><h3>Languages Spoken</h3><ul>' . $lang . '</ul></li>';
        
         // go through each of the services and build an html list for each
         foreach( $r['services'] as $temp ){
@@ -584,22 +581,21 @@ print_r( $r );
         }
        
         // go through each of the opportunities and build an html list for each
+		$opportunities = '';
         foreach( $r['opportunities'] as $temp ){
-            $opportunities = '';
             if( !empty( $temp['vol'] ))
                 $opportunities .= '<li class="vol"><h4>Volunteers</h4>' . $temp['vol'] . '</li>';
                
             if( !empty( $temp['intern'] ))
                 $opportunities .= '<li class="intern"><h4>Internships</h4>' . $temp['intern'] . '</li>';
-
-            // if $opportunities is not empty, then add it to the record
-            if( !empty( $opportunities ))
-                $record .= '<li class="opportunities"><h3>Opportunties</h3><ul>' . $opportunities . '</ul></li>';
         }
+		// if $opportunities is not empty, then add it to the record
+		if( !empty( $opportunities ))
+			$record .= '<li class="opportunities"><h3>Opportunties</h3><ul>' . $opportunities . '</ul></li>';
 
         // go through each of the facilities and build an html list for each
+		$facility = '';
         foreach( $r['facilities'] as $temp ){
-            $facility = '';
             if( !empty( $temp['room_cap'] ))
                 $facility .= '<li class="room_cap">' . $temp['room_cap'] . '</li>';
 
@@ -620,11 +616,10 @@ print_r( $r );
 
             if( !empty( $temp['disabled'] ))
                 $facility .= '<li class="disabled">' . $temp['disabled'] . '</li>';
-
-            // if $facility is not empty, then add it to the record
-            if( !empty( $facility ))
-                $record .= '<li class="desc"><h3>Facilities</h3>'. ( isset( $temp['desc'] ) ? $temp['desc'] : '' ) .'<ul>' . $facility . '</ul></li>';
         }
+		// if $facility is not empty, then add it to the record
+		if( !empty( $facility ))
+			$record .= '<li class="desc"><h3>Facilities</h3>'. ( isset( $temp['desc'] ) ? $temp['desc'] : '' ) .'<ul>' . $facility . '</ul></li>';
       
         $record .= '</ul>';
     }
