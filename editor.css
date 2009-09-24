@@ -2,26 +2,25 @@
 	width: 710px;
 }
 
-#scrib_meditor-cid-alum .name input {
-	width: 250px;
+#scrib_meditor-cid-aka input, #scrib_meditor-cid-web input, #scrib_meditor-cid-contact input, #scrib_meditor-cid-location input, #scrib_meditor-cid-services input, #scrib_meditor-cid-facilities input, #scrib_meditor-cid-affiliation input, #scrib_meditor-cid-geog input, #scrib_meditor-cid-keywords input {
+	width: 450px;
+	
+}
+
+
+/*#scrib_meditor-cid-alum .name input {
+	width: 450px;
 }
 
 #scrib_meditor-cid-alum .year input {
 	width: 100px;
-}
+}*/
 
 
-#scrib_meditor-cid-contact input {
-	width: 350px;
-}
 
 #scrib_meditor-cid-contact li.field {
 	clear: left;
 	margin-left: 35px;
-}
-
-#scrib_meditor-cid-contact li.weburl {
-	clear: none;
 }
 
 #scrib_meditor-cid-location li.field {
@@ -34,8 +33,9 @@
 	margin-left: 0;
 }
 
-#scrib_meditor-cid-location input {
-	width: 350px;
+
+#scrib_meditor-cid-location textarea {
+	width: 450px;
 }
 
 #scrib_meditor-cid-location li.state, #scrib_meditor-cid-location li.zip {
@@ -53,16 +53,46 @@
 	width: 98px;
 }
 
-#scrib_meditor-cid-location li.weburl, #scrib_meditor-cid-location li.email, #scrib_meditor-cid-location li.phone, #scrib_meditor-cid-location li.fax {
-	display: none;
+#scrib_meditor-cid-services li.field {
+	clear: left;
+	margin-left: 35px;
 }
 
+
+#scrib_meditor-cid-opportunities li.field {
+	clear: left;
+	margin-left: 35px;
+}
+
+#scrib_meditor-cid-opportunities textarea {
+	width: 450px;
+}
+
+#scrib_meditor-cid-facilities li.field {
+	clear: left;
+	margin-left: 35px;
+}
+
+#scrib_meditor-cid-facilities textarea {
+	width: 450px;
+}
+
+#scrib_meditor-cid-private textarea {
+	width: 450px;
+}
+
+
+/*#scrib_meditor-cid-location li.weburl, #scrib_meditor-cid-location li.email, #scrib_meditor-cid-location li.phone, #scrib_meditor-cid-location li.fax {
+	display: none;
+}
+*/
 #scrib_meditor-cid-specials input {
-	width: 350px;
+	width: 450px;
+	
 }
 
 #scrib_meditor-cid-specials textarea {
-	width: 350px;
+	width: 450px;
 	height: 125px;
 }
 
@@ -73,9 +103,4 @@
 
 #scrib_meditor-cid-specials .targets input {
 	width: 550px;
-}
-
-
-#scrib_meditor-cid-geog input, #scrib_meditor-cid-keywords input {
-	width: 350px;
 }
